@@ -17,7 +17,7 @@
 ```
 [S3 Client] → [MinIO]
          ↘ 
-		      (패킷 미러링)
+           (패킷 미러링)
         [DPU: 재조립·청크화]
                ↓ (첫 청크 TCP 전송)
         [Node.js 서버: 파싱 후 storeLog()]
@@ -25,7 +25,7 @@
           [Ethereum/Hardhat]
 ```
 
-- **DPU**: TCP 흐름 재조립, 16KB 청크, 첫 청크만 전송
+- **DPU**: TCP 재조립, 16KB 청크, 첫 청크만 전송
 - **Node.js**: 요청 파싱, `storeLog` 트랜잭션 실행
 - **스마트컨트랙트**: 불변 메타데이터 저장 (`method`, `bucket`, `key`, `akid`, `timestamp`)
 
@@ -106,7 +106,6 @@ npx hardhat run scripts/socketToBlockchain.js --network localhost
 ```
 
 > 이 TCP 서버가 DPU의 전송을 먼저 받아야 하므로, 반드시 터미널 3을 먼저 실행
-> 
 
 ---
 
