@@ -697,15 +697,15 @@
     memset(&fwd, 0, sizeof(fwd));
     memset(&fwd_miss, 0, sizeof(fwd_miss));
 
-    /* ✅ L3만 사용: IPv4 + src_ip만 매치 */
+    /* L3만 사용: IPv4 + src_ip만 매치 */
     match.parser_meta.outer_l3_type = DOCA_FLOW_L3_META_IPV4;
     match.outer.l3_type = DOCA_FLOW_L3_TYPE_IP4;
 
-    /* ❌ 아래 두 줄을 반드시 제거하세요 (protocol-only 유발) */
+    /* 아래 두 줄을 반드시 제거 (protocol-only 유발) */
     /* match.parser_meta.outer_l4_type = DOCA_FLOW_L4_META_TCP; */
     /* match.outer.l4_type_ext = DOCA_FLOW_L4_TYPE_EXT_TCP;     */
 
-    /* ✅ src_ip만 마스크 켬(0xFFFFFFFF). 나머지는 0(와일드카드) */
+    /* src_ip만 마스크 켬(0xFFFFFFFF). 나머지는 0(와일드카드) */
     match.outer.ip4.src_ip = 0xffffffff;
 
     actions.meta.pkt_meta = UINT32_MAX;
